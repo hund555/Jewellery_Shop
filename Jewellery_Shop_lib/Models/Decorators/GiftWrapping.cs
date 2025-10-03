@@ -1,5 +1,8 @@
 ﻿namespace Jewellery_Shop_lib.Models.Decorators
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GiftWrapping : Decorator
     {
         public override int Id { get; set; }
