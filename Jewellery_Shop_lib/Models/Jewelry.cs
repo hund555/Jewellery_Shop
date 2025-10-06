@@ -3,8 +3,20 @@
     public class Jewelry : Item
     {
         public override int Id { get; set; }
-        public override string Description { get; set; }
-        public override double Price { get; set; }
+
+        private string description;
+        public override string Description
+        {
+            get { return $"{this.Description}."; }
+            set { description = value; }
+        }
+
+        private double price;
+        public override double Price
+        {
+            get { return this.price; }
+            set { price = value; }
+        }
 
         public Jewelry(int Id, string Description, double Price)
         {

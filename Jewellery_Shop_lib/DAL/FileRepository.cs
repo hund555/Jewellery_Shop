@@ -30,27 +30,71 @@ namespace Jewellery_Shop_lib.DAL
 
         public List<string> GetAllOrders()
         {
-            
+            List<string> orders = new List<string>();
+            if (File.Exists(ORDER_FILE))
+            {
+                using (StringReader sr = new StringReader(ORDER_FILE))
+                {
+                    while (sr.Peek() >= 0)
+                    {
+                        orders.Add(sr.ReadLine());
+                    }
+                }
+            }
+            return orders;
         }
 
-        public string GetGiftWrappingInfo(int giftWrappingId)
+        public List<string> GetGiftWrappingInfo()
         {
-            
+            List<string> giftWrappingInfoList = new List<string>();
+            if (File.Exists(GIFTWRAPPING_FILE))
+            {
+                using (StringReader sr = new StringReader(GIFTWRAPPING_FILE))
+                {
+                    while (sr.Peek() >= 0)
+                    {
+                        giftWrappingInfoList.Add(sr.ReadLine());
+                    }
+                }
+            }
+            return giftWrappingInfoList;
         }
 
         public Jewelry GetJewelryItem(int jewelryId)
         {
-            
+            if(_jevelry_Items == null)
+            {
+                GetAllJewelry();
+            }
+            return _jevelry_Items.Find(j => j.Id == jewelryId);
         }
 
-        public string GetShipmentInfo(int shipmentId)
+        public List<string> GetShipmentInfo()
         {
-            
+            List<string> shippingInfoList = new List<string>();
+            if (File.Exists(SHIPMENT_FILE))
+            {
+                using (StringReader sr = new StringReader(SHIPMENT_FILE))
+                {
+                    while (sr.Peek() >= 0)
+                    {
+                        shippingInfoList.Add(sr.ReadLine());
+                    }
+                }
+            }
+            return shippingInfoList;
         }
 
         public void saveOrder(Item item)
         {
-            
+            List<string> ordersList = GetAllOrders();
+            if (!File.Exists(ORDER_FILE))
+            {
+                File.Create(ORDER_FILE);
+            }
+            string order = $"{item.Id}|{item.Description}|{item.Price}";
+            ordersList.Add(order);
+            File.WriteAllLines(ORDER_FILE, ordersList);
         }
     }
 }

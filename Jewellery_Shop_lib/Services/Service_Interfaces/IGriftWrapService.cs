@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Jewellery_Shop_lib.Models;
 
 namespace Jewellery_Shop_lib.Services.Service_Interfaces
 {
     public interface IGriftWrapService
     {
+        List<string> GetGiftWrappingInfoList();
+        Item AddGiftWrapping(Item item, int giftWrappingID);
     }
 }

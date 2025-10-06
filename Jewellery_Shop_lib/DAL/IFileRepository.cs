@@ -6,8 +6,8 @@ namespace Jewellery_Shop_lib.DAL
     {
         List<Jewelry> GetAllJewelry();
         Jewelry GetJewelryItem(int jewelryId);
-        string GetShipmentInfo(int shipmentId);
-        string GetGiftWrappingInfo(int giftWrappingId);
+        List<string> GetShipmentInfo();
+        List<string> GetGiftWrappingInfo();
         //Saves orders to a file
         void saveOrder(Item item);
         List<string> GetAllOrders();
