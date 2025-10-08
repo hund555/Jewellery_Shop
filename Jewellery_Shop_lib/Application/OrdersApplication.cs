@@ -1,13 +1,13 @@
 ﻿using Jewellery_Shop_lib.Domain;
 using Jewellery_Shop_lib.File_service;
-using Jewellery_Shop_lib.Services.Service_Interfaces;
+using Jewellery_Shop_lib.Application.Application_Interfaces;
 
-namespace Jewellery_Shop_lib.Services
+namespace Jewellery_Shop_lib.Application
 {
-    public class OrdersService : IOrdersService
+    public class OrdersApplication : IOrdersApplication
     {
         private readonly IFileRepository _fileRepository;
-        public OrdersService()
+        public OrdersApplication()
         {
             _fileRepository = FileRepository.GetInstance();
         }

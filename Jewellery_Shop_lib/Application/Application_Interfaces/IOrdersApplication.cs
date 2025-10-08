@@ -1,8 +1,8 @@
 ﻿using Jewellery_Shop_lib.Domain;
 
-namespace Jewellery_Shop_lib.Services.Service_Interfaces
+namespace Jewellery_Shop_lib.Application.Application_Interfaces
 {
-    public interface IOrdersService
+    public interface IOrdersApplication
     {
         List<string> GetAllOrders();
         void SaveOrder(Item item);

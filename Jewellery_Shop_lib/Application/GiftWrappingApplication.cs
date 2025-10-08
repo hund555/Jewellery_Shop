@@ -1,15 +1,15 @@
 ﻿using Jewellery_Shop_lib.Domain;
 using Jewellery_Shop_lib.Domain.Decorators;
 using Jewellery_Shop_lib.File_service;
-using Jewellery_Shop_lib.Services.Service_Interfaces;
+using Jewellery_Shop_lib.Application.Application_Interfaces;
 
-namespace Jewellery_Shop_lib.Services
+namespace Jewellery_Shop_lib.Application
 {
-    public class GiftWrappingService : IGriftWrapService
+    public class GiftWrappingApplication : IGiftWrapApplication
     {
         private readonly IFileRepository _fileRepository;
 
-        public GiftWrappingService()
+        public GiftWrappingApplication()
         {
             _fileRepository = FileRepository.GetInstance();
         }
@@ -24,6 +24,7 @@ namespace Jewellery_Shop_lib.Services
         /// <param name="giftWrappingID">The unique identifier of the gift wrapping option to apply.</param>
         /// <returns>A new <see cref="Item"/> instance with the selected gift wrapping applied.  If the specified gift wrapping
         /// ID is not found, the original item is returned unchanged.</returns>
+        
         public Item AddGiftWrapping(Item item, int giftWrappingID)
         {
             List<string> giftWrppings = _fileRepository.GetGiftWrappingInfo();
