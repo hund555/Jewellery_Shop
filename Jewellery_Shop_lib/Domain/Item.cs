@@ -1,4 +1,4 @@
-﻿namespace Jewellery_Shop_lib.Models
+﻿namespace Jewellery_Shop_lib.Domain
 {
     public abstract class Item
     {

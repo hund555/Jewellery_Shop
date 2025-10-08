@@ -1,4 +1,4 @@
-﻿namespace Jewellery_Shop_lib.Models.Decorators
+﻿namespace Jewellery_Shop_lib.Domain.Decorators
 {
     /// <summary>
     /// 

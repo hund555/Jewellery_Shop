@@ -1,4 +1,4 @@
-﻿namespace Jewellery_Shop_lib.Models
+﻿namespace Jewellery_Shop_lib.Domain
 {
     public class Jewelry : Item
     {
@@ -7,7 +7,7 @@
         private string description;
         public override string Description
         {
-            get { return $"{this.Description}."; }
+            get { return $"{description}."; }
             set { description = value; }
         }
 

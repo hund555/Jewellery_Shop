@@ -1,6 +1,6 @@
-﻿using Jewellery_Shop_lib.Models;
+﻿using Jewellery_Shop_lib.Domain;
 
-namespace Jewellery_Shop_lib.DAL
+namespace Jewellery_Shop_lib.File_service
 {
     public class FileRepository : IFileRepository
     {
@@ -9,6 +9,11 @@ namespace Jewellery_Shop_lib.DAL
         private const string GIFTWRAPPING_FILE = "GiftWrapping.txt";
         private const string SHIPMENT_FILE = "Shipment.txt";
         private const string ORDER_FILE = "Orders.txt";
+
+        private FileRepository()
+        {
+            
+        }
 
         public List<Jewelry> GetAllJewelry()
         {
@@ -95,6 +100,11 @@ namespace Jewellery_Shop_lib.DAL
             string order = $"{item.Id}|{item.Description}|{item.Price}";
             ordersList.Add(order);
             File.WriteAllLines(ORDER_FILE, ordersList);
+        }
+
+        public static FileRepository GetInstance()
+        {
+            return new FileRepository();
         }
     }
 }

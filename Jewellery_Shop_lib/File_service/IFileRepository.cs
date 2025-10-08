@@ -1,6 +1,6 @@
-﻿using Jewellery_Shop_lib.Models;
+﻿using Jewellery_Shop_lib.Domain;
 
-namespace Jewellery_Shop_lib.DAL
+namespace Jewellery_Shop_lib.File_service
 {
     public interface IFileRepository
     {
