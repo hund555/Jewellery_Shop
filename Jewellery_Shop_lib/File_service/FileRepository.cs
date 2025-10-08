@@ -15,6 +15,10 @@ namespace Jewellery_Shop_lib.File_service
             
         }
 
+        /// <summary>
+        /// Returns all jewelry items from the file and stores them as a list of the class Jewelry
+        /// </summary>
+        /// <returns></returns>
         public List<Jewelry> GetAllJewelry()
         {
             _jevelry_Items = new List<Jewelry>();
@@ -33,22 +37,32 @@ namespace Jewellery_Shop_lib.File_service
             return _jevelry_Items;
         }
 
+        /// <summary>
+        /// returns all orders from the file as a list of strings
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetAllOrders()
         {
             List<string> orders = new List<string>();
-            if (File.Exists(ORDER_FILE))
+            if (!File.Exists(ORDER_FILE))
             {
-                using (StringReader sr = new StringReader(ORDER_FILE))
+                File.Create(ORDER_FILE);
+            }
+            using (StringReader sr = new StringReader(ORDER_FILE))
+            {
+                while (sr.Peek() >= 0)
                 {
-                    while (sr.Peek() >= 0)
-                    {
-                        orders.Add(sr.ReadLine());
-                    }
+                    orders.Add(sr.ReadLine());
                 }
             }
+
             return orders;
         }
 
+        /// <summary>
+        /// returns all gift wrapping options from the file as a list of strings
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetGiftWrappingInfo()
         {
             List<string> giftWrappingInfoList = new List<string>();
@@ -65,6 +79,11 @@ namespace Jewellery_Shop_lib.File_service
             return giftWrappingInfoList;
         }
 
+        /// <summary>
+        /// returns a jewelry item based on the given id
+        /// </summary>
+        /// <param name="jewelryId"></param>
+        /// <returns></returns>
         public Jewelry GetJewelryItem(int jewelryId)
         {
             if(_jevelry_Items == null)
@@ -74,6 +93,10 @@ namespace Jewellery_Shop_lib.File_service
             return _jevelry_Items.Find(j => j.Id == jewelryId);
         }
 
+        /// <summary>
+        /// returns all shipping options from the file as a list of strings
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetShipmentInfo()
         {
             List<string> shippingInfoList = new List<string>();
@@ -90,18 +113,23 @@ namespace Jewellery_Shop_lib.File_service
             return shippingInfoList;
         }
 
+        /// <summary>
+        /// Saves the given item to the orders file
+        /// </summary>
+        /// <param name="item"></param>
         public void SaveOrder(Item item)
         {
             List<string> ordersList = GetAllOrders();
-            if (!File.Exists(ORDER_FILE))
-            {
-                File.Create(ORDER_FILE);
-            }
+            
             string order = $"{item.Id}|{item.Description}|{item.Price}";
             ordersList.Add(order);
             File.WriteAllLines(ORDER_FILE, ordersList);
         }
 
+        /// <summary>
+        /// Creates and returns a new instance of the <see cref="FileRepository"/> class.
+        /// </summary>
+        /// <returns>A new instance of the <see cref="FileRepository"/> class.</returns>
         public static FileRepository GetInstance()
         {
             return new FileRepository();
