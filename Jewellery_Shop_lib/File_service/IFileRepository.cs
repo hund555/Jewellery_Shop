@@ -9,7 +9,7 @@ namespace Jewellery_Shop_lib.File_service
         List<string> GetShipmentInfo();
         List<string> GetGiftWrappingInfo();
         //Saves orders to a file
-        void saveOrder(Item item);
+        void SaveOrder(Item item);
         List<string> GetAllOrders();
     }
 }
