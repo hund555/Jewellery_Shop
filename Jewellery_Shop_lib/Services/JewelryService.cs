@@ -16,5 +16,10 @@ namespace Jewellery_Shop_lib.Services
         {
             return _fileRepository.GetAllJewelry();
         }
+
+        public Item GetJewelryItem(int jewelryId)
+        {
+            return _fileRepository.GetJewelryItem(jewelryId);
+        }
     }
 }
