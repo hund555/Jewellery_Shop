@@ -1,17 +1,19 @@
-﻿using Jewellery_Shop_lib.Domain;
-using Jewellery_Shop_lib.Domain.Decorators;
+﻿using Jewellery_Shop_lib.Application.Application_Interfaces;
+using Jewellery_Shop_lib.Domain;
 using Jewellery_Shop_lib.File_service;
-using Jewellery_Shop_lib.Application.Application_Interfaces;
+using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
     public class GiftWrappingApplication : IGiftWrapApplication
     {
         private readonly IFileRepository _fileRepository;
+        private readonly GiftWrappingAdapter _gAdapter;
 
         public GiftWrappingApplication()
         {
             _fileRepository = FileRepository.GetInstance();
+            _gAdapter = new GiftWrappingAdapter();
         }
 
         /// <summary>
@@ -27,14 +29,8 @@ namespace Jewellery_Shop_lib.Application
         
         public Item AddGiftWrapping(Item item, int giftWrappingID)
         {
-            List<string> giftWrppings = _fileRepository.GetGiftWrappingInfo();
-            string[] chosenGiftWrapping = giftWrppings.FirstOrDefault(g => Convert.ToInt32(g.Split("|")[0]) == giftWrappingID).Split("|");
-            if (chosenGiftWrapping != null)
-            {
-                item = new GiftWrapping(item, giftWrappingID, chosenGiftWrapping[1], Convert.ToDouble(chosenGiftWrapping[2]));
-            }
-            
-            return item;
+            var allGiftWrappings = GetGiftWrappingInfoList();
+            return _gAdapter.CreateGiftWrappedItem(item, allGiftWrappings, giftWrappingID);
         }
 
         /// <summary>
@@ -44,7 +40,8 @@ namespace Jewellery_Shop_lib.Application
         /// is available.</returns>
         public List<string> GetGiftWrappingInfoList()
         {
-            return _fileRepository.GetGiftWrappingInfo();
+            var lines = _fileRepository.GetGiftWrappingInfo();
+            return _gAdapter.ConvertToGiftWrappingList(lines);
         }
     }
 }

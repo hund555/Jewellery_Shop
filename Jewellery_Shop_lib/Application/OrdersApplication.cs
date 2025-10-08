@@ -1,15 +1,19 @@
 ﻿using Jewellery_Shop_lib.Domain;
 using Jewellery_Shop_lib.File_service;
 using Jewellery_Shop_lib.Application.Application_Interfaces;
+using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
     public class OrdersApplication : IOrdersApplication
     {
         private readonly IFileRepository _fileRepository;
+        private readonly OrderAdapater _oAdapter;
+
         public OrdersApplication()
         {
             _fileRepository = FileRepository.GetInstance();
+            _oAdapter = new OrderAdapater();
         }
 
         /// <summary>
@@ -21,7 +25,8 @@ namespace Jewellery_Shop_lib.Application
         /// <returns>A list of strings representing all orders. The list will be empty if no orders are found.</returns>
         public List<string> GetAllOrders()
         {
-            return _fileRepository.GetAllOrders();
+            var getLines = _fileRepository.GetAllOrders();
+            return _oAdapter.ConvertToOrderList(getLines);
         }
 
         /// <summary>

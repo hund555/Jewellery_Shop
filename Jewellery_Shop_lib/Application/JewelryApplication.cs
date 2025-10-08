@@ -1,15 +1,20 @@
 ﻿using Jewellery_Shop_lib.Domain;
 using Jewellery_Shop_lib.File_service;
 using Jewellery_Shop_lib.Application.Application_Interfaces;
+using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
-    internal class JewelryApplication : IJewelryApplication
+    public class JewelryApplication : IJewelryApplication
     {
         private readonly IFileRepository _fileRepository;
+        private readonly JewelryAdapter _jAdapter;
+
+        //Constructor with dependency injection
         public JewelryApplication()
         {
             _fileRepository = FileRepository.GetInstance();
+            _jAdapter = new JewelryAdapter();
         }
 
         /// <summary>
@@ -19,7 +24,8 @@ namespace Jewellery_Shop_lib.Application
         /// are found.</returns>
         public List<Jewelry> GetAllJewelryItems()
         {
-            return _fileRepository.GetAllJewelry();
+            var getLines = _fileRepository.GetAllJewelry();
+            return _jAdapter.convertToJewelryList(getLines);
         }
 
         /// <summary>
@@ -32,7 +38,8 @@ namespace Jewellery_Shop_lib.Application
         /// langword="null"/> if no item with the given identifier exists.</returns>
         public Item GetJewelryItem(int jewelryId)
         {
-            return _fileRepository.GetJewelryItem(jewelryId);
+            var jewelryList = GetAllJewelryItems();
+            return jewelryList.FirstOrDefault(j => j.Id == jewelryId);
         }
     }
 }

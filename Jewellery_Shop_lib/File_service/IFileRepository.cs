@@ -4,7 +4,7 @@ namespace Jewellery_Shop_lib.File_service
 {
     public interface IFileRepository
     {
-        List<Jewelry> GetAllJewelry();
+        List<string> GetAllJewelry();
         Jewelry GetJewelryItem(int jewelryId);
         List<string> GetShipmentInfo();
         List<string> GetGiftWrappingInfo();

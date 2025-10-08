@@ -2,15 +2,19 @@
 using Jewellery_Shop_lib.Domain.Decorators;
 using Jewellery_Shop_lib.File_service;
 using Jewellery_Shop_lib.Application.Application_Interfaces;
+using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
     public class ShipmentApplication : IShipmentApplication
     {
         private readonly IFileRepository _fileRepository;
+        private readonly ShipmentAdapter _sAdapter;
+
         public ShipmentApplication()
         {
             _fileRepository = FileRepository.GetInstance();
+            _sAdapter = new ShipmentAdapter();
         }
 
         /// <summary>
@@ -25,13 +29,8 @@ namespace Jewellery_Shop_lib.Application
         /// is not found.</returns>
         public Item AddShipment(Item item, int shipmentID)
         {
-            List<string> shipments = _fileRepository.GetShipmentInfo();
-            string[] chosenShipment = shipments.FirstOrDefault(s => Convert.ToInt32(s.Split("|")[0]) == shipmentID).Split("|");
-            if (chosenShipment != null)
-            {
-                item = new Shipment(item, shipmentID, chosenShipment[1], Convert.ToDouble(chosenShipment[2]));
-            }
-            return item;
+            var allShipments = GetShipmentInfoList();
+            return _sAdapter.CreateShipmentItem(item, allShipments, shipmentID);
         }
 
         /// <summary>
@@ -43,7 +42,8 @@ namespace Jewellery_Shop_lib.Application
         /// available.</returns>
         public List<string> GetShipmentInfoList()
         {
-            return _fileRepository.GetShipmentInfo();
+            var getShipmentLines = _fileRepository.GetShipmentInfo();
+            return _sAdapter.ConvertToShipmentList(getShipmentLines);
         }
     }
 }

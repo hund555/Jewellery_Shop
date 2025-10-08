@@ -4,7 +4,7 @@ namespace Jewellery_Shop_lib.File_service
 {
     public class FileRepository : IFileRepository
     {
-        private List<Jewelry> _jevelry_Items;
+        private List<Jewelry> _jevelry_Items = new List<Jewelry>();
         private const string JEWELRY_FILE = "Jewelry.txt";
         private const string GIFTWRAPPING_FILE = "GiftWrapping.txt";
         private const string SHIPMENT_FILE = "Shipment.txt";
@@ -19,22 +19,21 @@ namespace Jewellery_Shop_lib.File_service
         /// Returns all jewelry items from the file and stores them as a list of the class Jewelry
         /// </summary>
         /// <returns></returns>
-        public List<Jewelry> GetAllJewelry()
+        public List<string> GetAllJewelry()
         {
-            _jevelry_Items = new List<Jewelry>();
+            List<string> getLines = new List<string>();
+           
             if(File.Exists(JEWELRY_FILE))
             {
                 using(StringReader sr = new StringReader(JEWELRY_FILE))
                 { 
                     while(sr.Peek() >= 0)
                     {
-                        string[] data = sr.ReadLine().Split('|');
-
-                        _jevelry_Items.Add(new Jewelry(Convert.ToInt32(data[0]), data[1], Convert.ToDouble(data[2])));
+                        getLines.Add(sr.ReadLine());
                     }
                 }
             }
-            return _jevelry_Items;
+            return getLines;
         }
 
         /// <summary>
