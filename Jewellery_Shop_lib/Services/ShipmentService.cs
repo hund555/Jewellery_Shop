@@ -7,7 +7,7 @@ namespace Jewellery_Shop_lib.Services
 {
     public class ShipmentService : IShipmentService
     {
-        private IFileRepository _fileRepository;
+        private readonly IFileRepository _fileRepository;
         public ShipmentService()
         {
             _fileRepository = FileRepository.GetInstance();

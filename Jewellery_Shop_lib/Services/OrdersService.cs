@@ -4,17 +4,22 @@ using Jewellery_Shop_lib.Services.Service_Interfaces;
 
 namespace Jewellery_Shop_lib.Services
 {
-    internal class JewelryService : IJewelryService
+    public class OrdersService : IOrdersService
     {
         private readonly IFileRepository _fileRepository;
-        public JewelryService()
+        public OrdersService()
         {
             _fileRepository = FileRepository.GetInstance();
         }
 
-        public List<Jewelry> GetAllJewelryItems()
+        public List<string> GetAllOrders()
         {
-            return _fileRepository.GetAllJewelry();
+            return _fileRepository.GetAllOrders();
+        }
+
+        public void SaveOrder(Item item)
+        {
+            _fileRepository.SaveOrder(item);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Jewellery_Shop_lib.Services
 {
     public class GiftWrappingService : IGriftWrapService
     {
-        private IFileRepository _fileRepository;
+        private readonly IFileRepository _fileRepository;
 
         public GiftWrappingService()
         {
