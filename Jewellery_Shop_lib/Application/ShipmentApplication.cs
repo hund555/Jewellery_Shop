@@ -1,7 +1,6 @@
-﻿using Jewellery_Shop_lib.Domain;
-using Jewellery_Shop_lib.Domain.Decorators;
+﻿using Jewellery_Shop_lib.Application.Application_Interfaces;
+using Jewellery_Shop_lib.Domain;
 using Jewellery_Shop_lib.File_service;
-using Jewellery_Shop_lib.Application.Application_Interfaces;
 using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application

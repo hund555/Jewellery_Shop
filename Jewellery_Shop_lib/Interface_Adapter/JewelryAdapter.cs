@@ -23,6 +23,7 @@ namespace Jewellery_Shop_lib.Interface_Adapter
             var splitLine = line.Split('|');
             if (splitLine.Length < 3)
             {
+                Console.WriteLine($"Line read: '{line}'");
                 throw new FormatException("Line is missing information.");
             }
 

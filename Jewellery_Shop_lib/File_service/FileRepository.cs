@@ -25,7 +25,7 @@ namespace Jewellery_Shop_lib.File_service
            
             if(File.Exists(JEWELRY_FILE))
             {
-                using(StringReader sr = new StringReader(JEWELRY_FILE))
+                using(StreamReader sr = new StreamReader(JEWELRY_FILE))
                 { 
                     while(sr.Peek() >= 0)
                     {
@@ -47,7 +47,7 @@ namespace Jewellery_Shop_lib.File_service
             {
                 File.Create(ORDER_FILE);
             }
-            using (StringReader sr = new StringReader(ORDER_FILE))
+            using (StreamReader sr = new StreamReader(ORDER_FILE))
             {
                 while (sr.Peek() >= 0)
                 {
@@ -67,7 +67,7 @@ namespace Jewellery_Shop_lib.File_service
             List<string> giftWrappingInfoList = new List<string>();
             if (File.Exists(GIFTWRAPPING_FILE))
             {
-                using (StringReader sr = new StringReader(GIFTWRAPPING_FILE))
+                using (StreamReader sr = new StreamReader(GIFTWRAPPING_FILE))
                 {
                     while (sr.Peek() >= 0)
                     {
@@ -101,7 +101,7 @@ namespace Jewellery_Shop_lib.File_service
             List<string> shippingInfoList = new List<string>();
             if (File.Exists(SHIPMENT_FILE))
             {
-                using (StringReader sr = new StringReader(SHIPMENT_FILE))
+                using (StreamReader sr = new StreamReader(SHIPMENT_FILE))
                 {
                     while (sr.Peek() >= 0)
                     {
