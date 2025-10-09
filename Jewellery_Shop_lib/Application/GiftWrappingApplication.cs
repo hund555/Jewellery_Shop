@@ -5,6 +5,11 @@ using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
+    /// <summary>
+    /// Handles all logic related to gift wrapping in the application.
+    /// Connects the file repository with the adapter to read wrapping data 
+    /// and apply the selected wrapping to an item.
+    /// </summary>
     public class GiftWrappingApplication : IGiftWrapApplication
     {
         private readonly IFileRepository _fileRepository;

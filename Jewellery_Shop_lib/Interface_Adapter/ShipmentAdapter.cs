@@ -3,6 +3,10 @@ using Jewellery_Shop_lib.Domain.Decorators;
 
 namespace Jewellery_Shop_lib.Interface_Adapter
 {
+    /// <summary>
+    /// Handles conversion and creation of shipment data between text files and domain objects.
+    /// Used to read shipment information and apply the selected shipment option to an item.
+    /// </summary>
     public class ShipmentAdapter
     {
         /// <summary>

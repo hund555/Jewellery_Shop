@@ -5,6 +5,10 @@ using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
+    /// <summary>
+    /// Handles all logic related to shipment in the application.
+    /// Uses the file repository and adapter to read shipment data and add it to items when needed.
+    /// </summary
     public class ShipmentApplication : IShipmentApplication
     {
         private readonly IFileRepository _fileRepository;

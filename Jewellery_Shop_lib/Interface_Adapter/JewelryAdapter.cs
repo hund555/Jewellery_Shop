@@ -2,6 +2,10 @@
 
 namespace Jewellery_Shop_lib.Interface_Adapter
 {
+    /// <summary>
+    /// Handles conversion between text file data and jewelry objects.
+    /// Used to read jewelry information from files and create Jewelry instances from it.
+    /// </summary>
     public class JewelryAdapter
     {
         /// <summary>

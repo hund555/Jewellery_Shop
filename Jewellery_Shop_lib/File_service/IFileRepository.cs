@@ -2,6 +2,10 @@
 
 namespace Jewellery_Shop_lib.File_service
 {
+    /// <summary>
+    /// Defines all file operations for the jewellery shop.
+    /// Used to read and write data for jewelry, gift wrapping, shipment, and orders.
+    /// </summary>
     public interface IFileRepository
     {
         List<string> GetAllJewelry();

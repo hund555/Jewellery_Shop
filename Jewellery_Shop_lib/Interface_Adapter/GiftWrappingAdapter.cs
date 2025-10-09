@@ -3,6 +3,10 @@ using Jewellery_Shop_lib.Domain.Decorators;
 
 namespace Jewellery_Shop_lib.Interface_Adapter
 {
+    /// <summary>
+    /// Handles conversion and creation of gift wrapping data between text files and domain objects.
+    /// Used to read gift wrapping info and apply the selected wrapping to an item.
+    /// </summary>
     public class GiftWrappingAdapter
     {
 

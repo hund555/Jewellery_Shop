@@ -2,6 +2,10 @@
 
 namespace Jewellery_Shop_lib.Interface_Adapter
 {
+    /// <summary>
+    /// Handles conversion between order data and text file format.
+    /// Used to read orders from files and convert items into text lines for saving.
+    /// </summary>
     public class OrderAdapater
     {
         /// <summary>

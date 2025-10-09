@@ -5,6 +5,10 @@ using Jewellery_Shop_lib.Interface_Adapter;
 
 namespace Jewellery_Shop_lib.Application
 {
+    /// <summary>
+    /// Handles all logic related to orders in the application.
+    /// Connects the file repository and adapter to load existing orders and save new ones.
+    /// </summary>
     public class OrdersApplication : IOrdersApplication
     {
         private readonly IFileRepository _fileRepository;
